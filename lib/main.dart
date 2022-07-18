@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
+import '../provider/dark_theme_provider.dart';
 import '../consts/theme_data.dart';
+
+import '../screens/bottom_bar_screen.dart';
 import '../screens/home_screen.dart';
 
 void main() {
@@ -43,9 +45,7 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           title: 'Grocery',
           theme: Styles.getTheme(themeChangeProvider.getDarkTheme, context),
-          home: const Scaffold(
-            body: HomeScreen(),
-          ),
+          home: const BottomBarScreen(),
           debugShowCheckedModeBanner: false,
         );
       }),
