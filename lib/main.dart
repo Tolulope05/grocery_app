@@ -5,7 +5,6 @@ import '../provider/dark_theme_provider.dart';
 import '../consts/theme_data.dart';
 
 import '../screens/bottom_bar_screen.dart';
-import '../screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
