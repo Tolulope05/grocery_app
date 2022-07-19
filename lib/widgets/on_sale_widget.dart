@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import '../widgets/price_widget.dart';
@@ -36,18 +36,11 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CachedNetworkImage(
+                    FancyShimmerImage(
                       imageUrl: "https://i.ibb.co/F0s3FHQ/Apricots.png",
                       height: size.width * .22,
-                      // width: size.width * .22,
-                      fit: BoxFit.fill,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) =>
-                              CircularProgressIndicator(
-                        value: downloadProgress.progress,
-                      ),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                      width: size.width * .22,
+                      boxFit: BoxFit.fill,
                     ),
                     Column(
                       children: [
