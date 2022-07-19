@@ -17,6 +17,8 @@ class UserScreen extends StatefulWidget {
 class _UserScreenState extends State<UserScreen> {
   final TextEditingController _addressTextControllerr =
       TextEditingController(text: "");
+  final TextEditingController _logoutTextController =
+      TextEditingController(text: "");
 
   @override
   void dispose() {
@@ -125,7 +127,9 @@ class _UserScreenState extends State<UserScreen> {
                   title: "Logout",
                   color: color,
                   icon: IconlyLight.logout,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _showLogoutDialogue();
+                  },
                 ),
               ],
             ),
@@ -158,6 +162,51 @@ class _UserScreenState extends State<UserScreen> {
         );
       },
     );
+  }
+
+  Future<void> _showLogoutDialogue() async {
+    await showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Image.asset(
+                  "assets/images/warning-sign.png",
+                  height: 20,
+                  width: 20,
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(width: 10),
+                Text("Sign out"),
+              ],
+            ),
+            content: const Text("Do you want to sign out?"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (Navigator.canPop(context)) {
+                    Navigator.pop(context);
+                  }
+                },
+                child: TextWidget(
+                  text: "Cancel",
+                  color: Colors.cyan,
+                  textSize: 18,
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: TextWidget(
+                  text: "OK",
+                  color: Colors.red,
+                  textSize: 18,
+                ),
+              ),
+            ],
+          );
+        });
   }
 }
 
