@@ -15,6 +15,15 @@ class UserScreen extends StatefulWidget {
 }
 
 class _UserScreenState extends State<UserScreen> {
+  final TextEditingController _addressTextControllerr =
+      TextEditingController(text: "");
+
+  @override
+  void dispose() {
+    _addressTextControllerr.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeState = Provider.of<DarkThemeProvider>(context);
@@ -27,6 +36,7 @@ class _UserScreenState extends State<UserScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 15),
                 RichText(
                   text: TextSpan(
                     text: "Hi, ",
@@ -66,7 +76,9 @@ class _UserScreenState extends State<UserScreen> {
                   subtitle: "My subtitle",
                   color: color,
                   icon: IconlyLight.profile,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await _showAddressDialog();
+                  },
                 ),
                 _listTile(
                   title: "Orders",
@@ -122,13 +134,38 @@ class _UserScreenState extends State<UserScreen> {
       ),
     );
   }
+
+  Future<void> _showAddressDialog() async {
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Update"),
+          content: TextField(
+            // onChanged: (value) => print(
+            //   "_addressTextControllerr.text ${_addressTextControllerr.text}",
+            // ),
+            controller: _addressTextControllerr,
+            maxLines: 5,
+            decoration: const InputDecoration(hintText: "Your address"),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: const Text("Update"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
 Widget _listTile({
   required String title,
   String? subtitle,
   required IconData icon,
-  required Function onPressed,
+  required VoidCallback onPressed,
   required Color color,
 }) {
   return ListTile(
@@ -145,6 +182,6 @@ Widget _listTile({
     ),
     leading: Icon(icon),
     trailing: const Icon(IconlyLight.arrowRight2),
-    onTap: () => onPressed,
+    onTap: onPressed,
   );
 }
