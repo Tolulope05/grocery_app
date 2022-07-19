@@ -18,82 +18,85 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
     Size size = Utils(context).getScreenSize;
     final theme = Utils(context).getTheme;
     final Color color = Utils(context).color;
-    return Material(
-      borderRadius: BorderRadius.circular(12),
-      color: Theme.of(context).cardColor.withOpacity(0.9),
-      child: InkWell(
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Material(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {
-          print("Inkwell Tapped!");
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CachedNetworkImage(
-                    imageUrl: "https://i.ibb.co/F0s3FHQ/Apricots.png",
-                    height: size.width * .22,
-                    // width: size.width * .22,
-                    fit: BoxFit.fill,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) =>
-                            CircularProgressIndicator(
-                      value: downloadProgress.progress,
+        color: Theme.of(context).cardColor.withOpacity(0.9),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: () {
+            print("Inkwell Tapped!");
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CachedNetworkImage(
+                      imageUrl: "https://i.ibb.co/F0s3FHQ/Apricots.png",
+                      height: size.width * .22,
+                      // width: size.width * .22,
+                      fit: BoxFit.fill,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) =>
+                              CircularProgressIndicator(
+                        value: downloadProgress.progress,
+                      ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  ),
-                  Column(
-                    children: [
-                      TextWidget(
-                        text: "1KG",
-                        color: color,
-                        textSize: 22,
-                        isTitle: true,
-                      ),
-                      const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              print("Bag is pressed!");
-                            },
-                            child: Icon(
-                              IconlyLight.bag2,
-                              size: 22,
-                              color: color,
+                    Column(
+                      children: [
+                        TextWidget(
+                          text: "1KG",
+                          color: color,
+                          textSize: 22,
+                          isTitle: true,
+                        ),
+                        const SizedBox(height: 6),
+                        Row(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                print("Bag is pressed!");
+                              },
+                              child: Icon(
+                                IconlyLight.bag2,
+                                size: 22,
+                                color: color,
+                              ),
                             ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              print("Heart is pressed!");
-                            },
-                            child: Icon(
-                              IconlyLight.heart,
-                              size: 22,
-                              color: color,
+                            GestureDetector(
+                              onTap: () {
+                                print("Heart is pressed!");
+                              },
+                              child: Icon(
+                                IconlyLight.heart,
+                                size: 22,
+                                color: color,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const PriceWidget(),
-              const SizedBox(height: 5),
-              TextWidget(
-                text: "Product Title",
-                color: color,
-                textSize: 16,
-                isTitle: true,
-              ),
-              const SizedBox(height: 5),
-            ],
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const PriceWidget(),
+                const SizedBox(height: 5),
+                TextWidget(
+                  text: "Product Title",
+                  color: color,
+                  textSize: 16,
+                  isTitle: true,
+                ),
+                const SizedBox(height: 5),
+              ],
+            ),
           ),
         ),
       ),

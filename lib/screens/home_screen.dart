@@ -3,6 +3,7 @@ import 'package:grocery_app/services/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:card_swiper/card_swiper.dart';
 
+import '../widgets/text_widget.dart';
 import '../widgets/on_sale_widget.dart';
 import '../provider/dark_theme_provider.dart';
 
@@ -49,7 +50,28 @@ class _HomeScreenState extends State<HomeScreen> {
               autoplay: true,
             ),
           ),
-          OnSaleWidget(),
+          const SizedBox(height: 6),
+          TextButton(
+            onPressed: () {
+              print("Print all is pressed!");
+            },
+            child: TextWidget(
+              text: "View all",
+              color: Colors.amber,
+              textSize: 22,
+            ),
+          ),
+          const SizedBox(height: 6),
+          SizedBox(
+            height: screenSize.height * .24,
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return const OnSaleWidget();
+              },
+              itemCount: 15,
+              scrollDirection: Axis.horizontal,
+            ),
+          )
         ],
       ),
     );
