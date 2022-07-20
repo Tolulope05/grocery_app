@@ -74,7 +74,15 @@ class _FeedWidgetState extends State<FeedWidget> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const PriceWidget(),
+                    Flexible(
+                      flex: 2,
+                      child: PriceWidget(
+                        isOnsale: true,
+                        price: 5.9,
+                        salePrice: 2.99,
+                        textPrice: _finalQuantitycontroller.text,
+                      ),
+                    ),
                     const SizedBox(width: 8),
                     Flexible(
                       child: Row(
@@ -87,6 +95,7 @@ class _FeedWidgetState extends State<FeedWidget> {
                           ),
                           const SizedBox(width: 5),
                           Flexible(
+                            flex: 2,
                             child: TextFormField(
                               controller: _finalQuantitycontroller,
                               key: const ValueKey("10"),
@@ -94,6 +103,12 @@ class _FeedWidgetState extends State<FeedWidget> {
                                 color: color,
                                 fontSize: 18,
                               ),
+                              onChanged: (value) {
+                                if (value.trim() == "") {
+                                } else {
+                                  setState(() {});
+                                }
+                              },
                               keyboardType: TextInputType.number,
                               maxLines: 1,
                               enabled: true,
@@ -117,18 +132,19 @@ class _FeedWidgetState extends State<FeedWidget> {
                     print("Text Button is pressed!");
                   },
                   style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                          Theme.of(context).cardColor),
-                      tapTargetSize: MaterialTapTargetSize
-                          .shrinkWrap, // To remove all the padding around a text button
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(12),
-                            bottomLeft: Radius.circular(12),
-                          ),
+                    backgroundColor:
+                        MaterialStateProperty.all(Theme.of(context).cardColor),
+                    tapTargetSize: MaterialTapTargetSize
+                        .shrinkWrap, // To remove all the padding around a text button
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(12),
+                          bottomLeft: Radius.circular(12),
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                   child: TextWidget(
                     text: "Add to Cart",
                     color: color,
