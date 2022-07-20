@@ -1,6 +1,7 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import '../widgets/heart_btn.dart';
 import '../widgets/price_widget.dart';
 import '../widgets/text_widget.dart';
 import '../services/utils.dart';
@@ -63,16 +64,7 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                                 color: color,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                print("Heart is pressed!");
-                              },
-                              child: Icon(
-                                IconlyLight.heart,
-                                size: 22,
-                                color: color,
-                              ),
-                            ),
+                            const HeartButton(),
                           ],
                         ),
                       ],
@@ -87,7 +79,6 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                   textSize: 16,
                   isTitle: true,
                 ),
-                const SizedBox(height: 5),
               ],
             ),
           ),
