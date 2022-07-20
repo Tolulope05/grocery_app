@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
-import 'package:provider/provider.dart';
+import 'package:grocery_app/screens/inner_screen/on_sale_screen.dart';
+import 'package:grocery_app/services/global_methods.dart';
 import 'package:card_swiper/card_swiper.dart';
 
-import '../provider/dark_theme_provider.dart';
 import '../services/utils.dart';
 import '../widgets/feeds_items.dart';
 import '../widgets/text_widget.dart';
@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
-    final themeState = Provider.of<DarkThemeProvider>(context);
     final Size screenSize = Utils(context).getScreenSize;
     final height = screenSize.height;
     final Color color = Utils(context).color;
@@ -57,7 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 6),
             TextButton(
               onPressed: () {
-                print("Print all is pressed!");
+                GlobalMethods.navigateTo(
+                  context: context,
+                  routeName: OnSaleScreen.routeName,
+                );
               },
               child: TextWidget(
                 text: "View all",
