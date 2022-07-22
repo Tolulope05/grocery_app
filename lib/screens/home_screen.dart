@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:grocery_app/screens/inner_screen/feeds_screen.dart';
 import 'package:grocery_app/screens/inner_screen/on_sale_screen.dart';
 import 'package:grocery_app/services/global_methods.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -116,7 +117,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Spacer(),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      GlobalMethods.navigateTo(
+                        context: context,
+                        routeName: FeedsScreen.routeName,
+                      );
+                    },
                     child: TextWidget(
                       text: "Browse all",
                       color: Colors.blue,

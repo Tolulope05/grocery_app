@@ -11,6 +11,7 @@ class OnSaleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool _isEmpty = false;
     final Size screenSize = Utils(context).getScreenSize;
     final height = screenSize.height;
     final Color color = Utils(context).color;
@@ -21,7 +22,7 @@ class OnSaleScreen extends StatelessWidget {
         leading: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
-            print("Header tapped");
+            Navigator.pop(context);
           },
           child: Icon(
             IconlyLight.arrowLeft2,
@@ -35,15 +36,38 @@ class OnSaleScreen extends StatelessWidget {
           isTitle: true,
         ),
       ),
-      body: GridView.count(
-        shrinkWrap: true,
-        // physics: const NeverScrollableScrollPhysics(),
-        crossAxisCount: 2,
-        childAspectRatio: screenSize.width / (screenSize.height * .6),
-        children: List.generate(16, (index) {
-          return const FeedWidget();
-        }),
-      ),
+      body: _isEmpty
+          ? Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Image.asset("assets/images/box.png"),
+                    ),
+                    Text(
+                      "No Products on sale yet!, \nStay tuned",
+                      style: TextStyle(
+                        color: color,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : GridView.count(
+              shrinkWrap: true,
+              // physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              childAspectRatio: screenSize.width / (screenSize.height * .6),
+              children: List.generate(16, (index) {
+                return const FeedWidget();
+              }),
+            ),
     );
   }
 }
